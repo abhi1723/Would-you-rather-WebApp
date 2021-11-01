@@ -16,6 +16,13 @@ function IndividualQuestion(props){
     if(Object.keys(authedUser).length===0){
         props.history.push(`/login`);
     }
+    console.log("id ",id);
+    console.log("id  length",id.length);
+    if( questions[id]===undefined){
+        // console.log("")
+        props.history.push(`/pageNotFound`);
+    }
+   
     const storeAnswer =(id,answer)=> {
         dispatch(saveAnswer(id,answer));
     }

@@ -5,7 +5,7 @@ import LeaderBoard from "./LeaderBoard";
 // import { STORE_POINTS } from "../actions/pointsTable";
 import pointTable from "../actions/pointsTable";
 import  NewQuestion  from "./NewQuestion";
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import IndividualQuestion from "./IndividualQuestion";
 import PageNotFound from "./PageNotFound";
@@ -19,7 +19,7 @@ function App(props) {
   },[users,dispatch]);
   return (
     <BrowserRouter>
-    <div className="App">
+    <Fragment>
       <Nav/>
       <Switch>
       <Route path="/login" component={Login} />
@@ -29,8 +29,9 @@ function App(props) {
       <Route path="/individualQuestion/:id" component={IndividualQuestion}/>
       <Route exact path="/" component={Login} />
       <Route component={PageNotFound}/>
+      <Route path="/pageNotFound" component={PageNotFound}/>
       </Switch>
-     </div>
+     </Fragment>
     </BrowserRouter>
   );
 }

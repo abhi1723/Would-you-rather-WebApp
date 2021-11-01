@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { withRouter } from "react-router";
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
   
   function LeaderBoard(props){
@@ -16,12 +18,12 @@ import { withRouter } from "react-router";
     if(Object.keys(authedUser).length===0){
         props.history.push(`/login`);
     }
-    function createData(rank, name, points) {
-        return { rank, name, points};
+    function createData(rank, name, points, avatarURL,noOfAnsweredQuestions,noOfQuestionsAsked) {
+        return { rank, name, points, avatarURL,noOfAnsweredQuestions,noOfQuestionsAsked};
       }
     
     const rows =pointsTable.map((l,index) =>{
-        return createData(index+1,l["userId"],l.totalPoints)
+        return createData(index+1,l["name"],l.totalPoints,l["avatarURL"],l["noOfAnsweredQuestions"],l["noOfQuestionsAsked"])
     })
     return (
         <Grid container className="questionCard">
@@ -36,6 +38,8 @@ import { withRouter } from "react-router";
             <TableCell>Rank</TableCell>
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Points</TableCell>
+            <TableCell align="center">No Of Questions Answered</TableCell>
+            <TableCell align="center">No Of Questions Asked</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,8 +50,13 @@ import { withRouter } from "react-router";
               <TableCell component="th" scope="row">
                 {row.rank}
               </TableCell>
-              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center"><Stack direction="row" spacing={2}>
+                                <Avatar alt="profile pic" src={row.avatarURL} />
+                                <span>{row.name}  </span>
+                            </Stack></TableCell>
               <TableCell align="center">{row.points}</TableCell>
+              <TableCell align="center">{row.noOfAnsweredQuestions}</TableCell>
+              <TableCell align="center">{row.noOfQuestionsAsked}</TableCell>
             </TableRow>
           ))}
         </TableBody>

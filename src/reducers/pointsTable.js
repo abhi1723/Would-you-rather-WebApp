@@ -7,11 +7,13 @@ export default function pointsTable(pointsTable = [], action){
             const userIds = Object.keys(users);
             let leaderboard = [];
             if (userIds.length > 0) {
-                userIds.map(userId => {
-                    let noOfAnsweredQuestions = Object.keys(users[userId]["answers"]).length;
+                userIds.forEach(userId =>{
+                let noOfAnsweredQuestions = Object.keys(users[userId]["answers"]).length;
                     let noOfQuestionsAsked = users[userId]["questions"].length;
                     let totalPoints = noOfAnsweredQuestions + noOfQuestionsAsked;
-                    let rankingBoard = { userId, totalPoints };
+                    let avatarURL=users[userId]["avatarURL"];
+                    let name = users[userId]["name"]
+                    let rankingBoard = { name, totalPoints,noOfAnsweredQuestions,noOfQuestionsAsked, avatarURL};
                     leaderboard.push(rankingBoard);
                 })
                 console.log("leaderboard Leaderboard ", leaderboard);

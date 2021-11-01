@@ -17,8 +17,7 @@ const Nav = (props) => {
     const logOutUser = () => {
         dispatch(logOut());
     }
-    return <div>
-        <Box sx={{ flexGrow: 1 }}>
+    return        <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -40,7 +39,7 @@ const Nav = (props) => {
                 </Toolbar>
             </AppBar>
         </Box>
-    </div>
+    
 }
 function mapStateToProps({ authedUser }) {
     return {
